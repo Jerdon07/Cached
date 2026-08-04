@@ -13,4 +13,9 @@ class Permission extends Model
     protected $casts = [
         'name' => 'string',
     ];
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
+    }
 }

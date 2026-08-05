@@ -12,11 +12,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 ])]
 class Role extends Model
 {
-    protected $casts = [
-        'name' => 'string',
-        'description' => 'string',
-    ];
-
     public function users(): BelongsToMany
     {
         return $this->belongsToMany(User::class);

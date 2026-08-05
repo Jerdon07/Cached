@@ -12,7 +12,7 @@ return new class extends Migration
             $table->id();
             $table->string('company_name')->nullable();
             $table->string('contact_person');
-            $table->integer('phone')->unique();
+            $table->string('phone')->unique();
             $table->string('email')->unique();
             $table->string('address');
             $table->string('city');

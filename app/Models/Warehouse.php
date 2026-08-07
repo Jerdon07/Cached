@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 #[Fillable(['name', 'address', 'description'])]
 class Warehouse extends Model
 {
-    public function WarehouseLocations(): HasMany
+    public function warehouseLocations(): HasMany
     {
         return $this->hasMany(WarehouseLocation::class);
     }

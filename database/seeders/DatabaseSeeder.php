@@ -34,6 +34,8 @@ class DatabaseSeeder extends Seeder
 
             GoodsReceiptSeeder::class,
             GoodsReceiptItemSeeder::class,
+
+            StockMovementSeeder::class,
         ]);
     }
 }

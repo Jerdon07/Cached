@@ -10,9 +10,9 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('category_id')->cascadeOnDelete();
-            $table->foreignId('brand_id')->cascadeOnDelete();
-            $table->foreignId('unit_id')->cascadeOnDelete();
+            $table->foreignId('category_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('brand_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('unit_id')->constrained()->cascadeOnDelete();
 
             $table->string('name')-> unique();
             $table->string('sku')->nullable();

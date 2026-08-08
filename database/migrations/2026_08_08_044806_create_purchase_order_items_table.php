@@ -13,9 +13,9 @@ return new class extends Migration
             $table->foreignId('purchase_order_id')->constrained()->cascadeOnDelete();
             $table->foreignId('product_id')->constrained()->cascadeOnDelete();
 
-            $table->integer('quantity');
-            $table->integer('unit_cost');
-            $table->integer('subtotal');
+            $table->decimal('quantity', 12, 3);
+            $table->decimal('unit_cost', 12, 3);
+            $table->decimal('subtotal', 12, 3);
             $table->timestamps();
         });
     }

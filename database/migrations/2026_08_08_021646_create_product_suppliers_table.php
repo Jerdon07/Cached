@@ -14,7 +14,7 @@ return new class extends Migration
             $table->foreignId('supplier_id')->constrained()->cascadeOnDelete();
 
             $table->string('supplier_sku')->nullable();
-            $table->integer('cost_price');
+            $table->decimal('cost_price', 12, 3);
             $table->boolean('preferred');
             $table->timestamps();
         });

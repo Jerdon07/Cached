@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('name')-> unique();
             $table->string('sku')->nullable();
             $table->string('barcode')->nullable();
-            $table->tet('description')->nullable();
+            $table->text('description')->nullable();
             $table->decimal('selling_price', 12, 3);
             $table->decimal('minimum_stock', 12, 3);
             $table->boolean('is_active');

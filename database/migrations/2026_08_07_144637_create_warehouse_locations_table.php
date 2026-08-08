@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('rack')->nullable();
             $table->string('shelf')->nullable();
             $table->string('bin')->nullable();
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

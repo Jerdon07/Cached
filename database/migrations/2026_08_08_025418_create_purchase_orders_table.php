@@ -15,7 +15,7 @@ return new class extends Migration
             $table->date('order_date');
             $table->date('expected_delivery_date');
             $table->enum('status', ['draft', 'pending', 'approved', 'cancelled', 'completed'])->default('pending');
-            $table->string('remarks')->nullable();
+            $table->text('remarks')->nullable();
             $table->string('created_by');
             $table->string('approved_by');
             $table->date('approved_at');

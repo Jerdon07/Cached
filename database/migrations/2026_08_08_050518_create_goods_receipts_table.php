@@ -14,7 +14,7 @@ return new class extends Migration
             $table->integer('receipt_number');
             $table->date('received_date');
             $table->string('received_by');
-            $table->string('remarks')->nullable();
+            $table->text('remarks')->nullable();
             $table->timestamps();
         });
     }

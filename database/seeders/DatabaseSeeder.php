@@ -33,6 +33,7 @@ class DatabaseSeeder extends Seeder
             PurchaseOrderItemSeeder::class,
 
             GoodsReceiptSeeder::class,
+            GoodsReceiptItemSeeder::class,
         ]);
     }
 }

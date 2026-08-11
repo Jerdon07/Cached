@@ -15,43 +15,43 @@ class PurchasingOfficerPermissionSeeder extends Seeder
         
         $purchasingOfficer->permissions()->sync(
             Permission::whereIn('name', [
-                'product_view_any',
-                'products_view',
-                'categories_view_any',
-                'products_view',
+                'view_any_products',
+                'view_products',
+                'view_any_categories',
+                'view_products',
                 
-                'suppliers_view_any',
-                'suppliers_view',
-                'suppliers_create',
-                'suppliers_update',
-                'suppliers_delete',
-                'suppliers_delete_any',
+                'view_any_suppliers',
+                'view_suppliers',
+                'create_suppliers',
+                'update_suppliers',
+                'delete_suppliers',
+                'delete_any_suppliers',
 
-                'purchase_orders_view_any',
-                'purchase_orders_view',
-                'purchase_orders_create',
-                'purchase_orders_update',
-                'purchase_orders_delete',
-                'purchase_orders_delete_any',
+                'view_any_purchase_orders',
+                'view_purchase_orders',
+                'create_purchase_orders',
+                'update_purchase_orders',
+                'delete_purchase_orders',
+                'delete_any_purchase_orders',
 
-                'purchase_order_items_view_any',
-                'purchase_order_items_view',
-                'purchase_order_items_create',
-                'purchase_order_items_update',
-                'purchase_order_items_delete',
-                'purchase_order_items_delete_any',
+                'view_any_purchase_order_items',
+                'view_purchase_order_items',
+                'create_purchase_order_items',
+                'update_purchase_order_items',
+                'delete_purchase_order_items',
+                'delete_any_purchase_order_items',
 
-                'goods_receipts_view_any',
-                'goods_receipts_view',
+                'view_any_goods_receipts',
+                'view_goods_receipts',
 
-                'warehouses_view_any',
-                'warehouses_view',
+                'view_any_warehouses',
+                'view_warehouses',
 
-                'warehouse_locations_view_any',
-                'warehouse_locations_view',
+                'view_any_warehouse_locations',
+                'view_warehouse_locations',
 
-                'stock_movements_view_any',
-                'stock_movements_view',
+                'view_any_stock_movements',
+                'view_stock_movements',
             ])
         );
     }

@@ -15,7 +15,6 @@ return new class extends Migration
 
             $table->decimal('quantity', 12, 3);
             $table->decimal('unit_cost', 12, 3);
-            $table->decimal('subtotal', 12, 3);
             $table->timestamps();
         });
     }

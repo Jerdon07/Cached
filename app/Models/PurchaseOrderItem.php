@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-#[Fillable(['purchase_order_id', 'product_id', 'quantity', 'unit_cost', 'subtotal'])]
+#[Fillable(['purchase_order_id', 'product_id', 'quantity', 'unit_cost'])]
 class PurchaseOrderItem extends Model
 {
     public function purchaseOrder(): BelongsTo

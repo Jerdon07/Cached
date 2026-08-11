@@ -1,58 +1,206 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Inventory & Warehouse Management System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Project Overview
 
-## About Laravel
+The Inventory & Warehouse Management System (IWMS) is a web-based business management application built to help organizations efficiently manage products, inventory, warehouses, purchasing, receiving, sales, and stock movements from a single platform.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+The primary goal of the system is to replace manual processes such as paper records and spreadsheets with a centralized, real-time inventory management solution.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+# Problem Statement
 
-## Learning Laravel
+Many small and medium-sized businesses still manage inventory using notebooks, spreadsheets, or disconnected software. This creates problems including:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- Inaccurate inventory counts
+- Overstocking
+- Stock shortages
+- Lost or misplaced inventory
+- Duplicate purchasing
+- Slow warehouse operations
+- Lack of accountability
+- No audit trail
+- Difficult reporting
+- Poor purchasing decisions
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+The proposed system addresses these issues by automating inventory operations and maintaining a single source of truth.
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+---
 
-## Agentic Development
+# Objectives
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+The system aims to:
 
-```bash
-composer require laravel/boost --dev
+- Centralize inventory data.
+- Track stock levels in real time.
+- Manage warehouses and storage locations.
+- Streamline purchasing and receiving.
+- Record every stock movement.
+- Improve inventory accuracy.
+- Generate business reports.
+- Support role-based access control.
+- Maintain an audit trail for accountability.
 
-php artisan boost:install
-```
+---
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+# Scope
 
-## Contributing
+The system includes:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Product Management
 
-## Code of Conduct
+- Products
+- Categories
+- Brands
+- Units of Measure
+- Barcode / SKU support
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Warehouse Management
 
-## Security Vulnerabilities
+- Multiple Warehouses
+- Warehouse Locations
+- Stock per Warehouse
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Purchasing
 
-## License
+- Suppliers
+- Purchase Orders
+- Purchase Order Items
+- Approval Workflow
+- Goods Receiving
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Inventory
+
+- Stock Movements
+- Inventory Adjustments
+- Stock Transfers
+- Stock Counts
+
+## Sales
+
+- Customers
+- Sales Orders
+- Sales Order Items
+
+## Administration
+
+- Users
+- Roles
+- Permissions
+- Audit Logs
+
+## Reporting
+
+- Inventory Valuation
+- Low Stock Report
+- Fast-moving Products
+- Slow-moving Products
+- Purchase Reports
+- Sales Reports
+- Supplier Reports
+
+---
+
+# Traditional Workflow
+
+1. Inventory is checked manually.
+2. Purchasing decides what to order.
+3. Purchase Orders are created manually.
+4. Suppliers deliver products.
+5. Warehouse staff manually count received items.
+6. Products are stored.
+7. Sales reduce inventory manually.
+8. Periodic physical inventory is performed.
+9. Reports are created manually.
+
+---
+
+# Proposed Workflow
+
+1. Products are maintained in the system.
+2. Low-stock alerts notify purchasing.
+3. Purchase Orders are created digitally.
+4. Managers approve Purchase Orders.
+5. Suppliers deliver goods.
+6. Warehouse staff receive deliveries into the system.
+7. Inventory updates automatically.
+8. Sales automatically deduct inventory.
+9. Every inventory movement is recorded.
+10. Managers monitor dashboards and reports.
+
+---
+
+# Primary Modules
+
+- Authentication & RBAC
+- Dashboard
+- Product Management
+- Supplier Management
+- Customer Management
+- Warehouse Management
+- Purchasing
+- Receiving
+- Inventory Management
+- Sales Management
+- Reporting
+- Audit Logging
+
+---
+
+# Core User Roles
+
+- Administrator
+- Purchasing Officer
+- Purchasing Manager
+- Warehouse Manager
+- Warehouse Staff
+- Sales Representative
+- Sales Manager
+- Inventory Controller
+- Finance Officer
+- General Manager
+
+---
+
+# Recommended Technology Stack
+
+- Laravel
+- Filament
+- MySQL or PostgreSQL
+- Spatie Laravel Permission
+- Laravel Queue
+- Laravel Notifications
+
+---
+
+# Expected Learning Outcomes
+
+By completing this project, you will gain experience with:
+
+- Laravel architecture
+- Filament Resources
+- Role-Based Access Control (RBAC)
+- Database design
+- Eloquent relationships
+- Transactions
+- Business workflows
+- Dashboards
+- Reporting
+- Audit logging
+- Enterprise application development
+
+---
+
+# Future Enhancements
+
+- Barcode scanning
+- QR code labels
+- Mobile warehouse application
+- Supplier portal
+- Customer portal
+- Email notifications
+- Inventory forecasting
+- Demand prediction
+- Purchase recommendations
+- Multi-company support
+- API integrations

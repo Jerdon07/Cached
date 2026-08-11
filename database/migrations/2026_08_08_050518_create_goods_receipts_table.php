@@ -12,7 +12,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('purchase_order_id')->constrained()->cascadeOnDelete();
             $table->string('received_by')->constrained('users')->restrictOnDelete();
-            $table->integer('receipt_number');
             $table->date('received_date');
             $table->text('remarks')->nullable();
             $table->timestamps();

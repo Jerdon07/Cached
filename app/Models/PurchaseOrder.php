@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-#[Fillable(['supplier_id', 'po_number', 'order_date', 'expected_delivery_date', 'status', 'remarks', 'created_by', 'approved_by', 'approved_at'])]
+#[Fillable(['supplier_id', 'po_number', 'order_date', 'expected_delivery_date', 'status', 'notes', 'created_by', 'approved_by', 'approved_at'])]
 class PurchaseOrder extends Model
 {
     protected function casts(): array
@@ -34,5 +34,10 @@ class PurchaseOrder extends Model
     public function goodsReceipt(): HasMany
     {
         return $this->hasMany(GoodsReceipt::class);
+    }
+
+    public function getPurchaseOrderAttribute(): string
+    {
+        return 'PO-' . str_pad($this->id, 6, '0', STR_PAD_LEFT);
     }
 }

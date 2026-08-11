@@ -26,4 +26,9 @@ class GoodsReceipt extends Model
     {
         return $this->hasMany(GoodsReceiptItem::class);
     }
+
+    public function getReceiptNumberAttribute(): string
+    {
+        return 'GR-' . str_pad($this->id, 6, '0', STR_PAD_LEFT);
+    }
 }

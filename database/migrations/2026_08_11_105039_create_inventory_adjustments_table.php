@@ -10,7 +10,6 @@ return new class extends Migration
     {
         Schema::create('inventory_adjustments', function (Blueprint $table) {
             $table->id();
-            $table->integer('adjustment_number');
             $table->text('reason');
             $table->enum('status', ['draft', 'pending', 'approved', 'rejected', 'cancelled', 'completed'])->default('pending');
             $table->foreignId('created_by')->constrained('users')->rejectOnDelete();

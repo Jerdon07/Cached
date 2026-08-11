@@ -17,7 +17,7 @@ return new class extends Migration
             $table->decimal('quantity', 12, 3);
             $table->nullableMorphs('reference');
             $table->foreignId('performed_by')->constrained('users')->restrictOnDelete();
-            $table->text('remarks')->nullable();
+            $table->text('notes')->nullable();
             $table->timestamps();
         });
     }

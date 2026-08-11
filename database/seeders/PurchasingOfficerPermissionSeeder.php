@@ -18,7 +18,7 @@ class PurchasingOfficerPermissionSeeder extends Seeder
                 'view_any_products',
                 'view_products',
                 'view_any_categories',
-                'view_products',
+                'view_categories',
                 
                 'view_any_suppliers',
                 'view_suppliers',

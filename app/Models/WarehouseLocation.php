@@ -19,4 +19,9 @@ class WarehouseLocation extends Model
     {
         return $this->hasMany(GoodsReceiptItem::class);
     }
+
+    public function item(): HasMany
+    {
+        return $this->hasMany(InventoryAdjustmentItem::class);
+    }
 }

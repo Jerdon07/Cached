@@ -35,4 +35,9 @@ class Product extends Model
                 'preferred',
             ]);
     }
+
+    public function item(): HasMany
+    {
+        return $this->hasMany(InventoryAdjustmentItem::class);
+    }
 }

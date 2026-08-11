@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('created_by')->constrained('users')->rejectOnDelete();
             $table->foreignId('approved_by')->constrained('users')->rejectOnDelete();
             $table->date('approved_at');
-            $table->text('notes');
+            $table->text('notes')->nullable();
             $table->timestamps();
         });
     }

@@ -45,6 +45,8 @@ class DatabaseSeeder extends Seeder
 
             StockTransferSeeder::class,
             StockTransferItemSeeder::class,
+
+            SalesOrderSeeder::class,
         ]);
     }
 }

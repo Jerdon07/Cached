@@ -36,8 +36,13 @@ class Product extends Model
             ]);
     }
 
-    public function item(): HasMany
+    public function inventoryAdjustMentItems(): HasMany
     {
         return $this->hasMany(InventoryAdjustmentItem::class);
+    }
+
+    public function salesOrderItems(): HasMany
+    {
+        return $this->hasMany(SalesOrderItem::class);
     }
 }

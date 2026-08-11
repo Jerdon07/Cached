@@ -44,6 +44,7 @@ class DatabaseSeeder extends Seeder
             InventoryAdjustmentItemSeeder::class,
 
             StockTransferSeeder::class,
+            StockTransferItemSeeder::class,
         ]);
     }
 }

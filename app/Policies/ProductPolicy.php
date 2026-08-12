@@ -33,7 +33,7 @@ class ProductPolicy
         return $user->hasPermissionTo('delete_products');
     }
 
-    public function deleteAny(User $user, Product $product): bool
+    public function deleteAny(User $user): bool
     {
         return $user->hasPermissionTo('delete_any_products');
     }
@@ -43,7 +43,7 @@ class ProductPolicy
         return $user->hasPermissionTo('restore_products');
     }
 
-    public function restoreAny(User $user, Product $product): bool
+    public function restoreAny(User $user): bool
     {
         return $user->hasPermissionTo('restore_any_products');
     }
@@ -53,7 +53,7 @@ class ProductPolicy
         return $user->hasPermissionTo('force_delete_products');
     }
 
-    public function foreceDeleteAny(User $user, Product $product): bool
+    public function foreceDeleteAny(User $user): bool
     {
         return $user->hasPermissionTo('force_delete_any_products');
     }

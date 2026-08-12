@@ -10,9 +10,7 @@ class GoodsReceiptSeeder extends Seeder
 {
     public function run(): void
     {
-        GoodsReceipt::firstOrCreate([
-            'receipt_number' => 1,
-        ], [
+        GoodsReceipt::create([
             'purchase_order_id' => 1,
             'received_date' => now(),
             'received_by' => 'Hussain Binladen',

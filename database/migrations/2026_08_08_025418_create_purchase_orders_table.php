@@ -12,7 +12,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('supplier_id')->constrained()->cascadeOnDelete();
             $table->foreignId('created_by')->constrained('users')->restrictOnDelete()->nullable();
-            $table->foreignId('approved_by')->constrained('users')->restrictOndelete();
+            $table->foreignId('approved_by')->constrained('users')->restrictOndelete()->nullable();
             $table->date('order_date');
             $table->date('expected_delivery_date');
             $table->enum('status', ['draft', 'pending', 'approved', 'cancelled', 'completed'])->default('draft');

@@ -13,7 +13,7 @@ return new class extends Migration
             $table->text('reason');
             $table->enum('status', ['draft', 'pending', 'approved', 'rejected', 'cancelled', 'completed'])->default('draft');
             $table->foreignId('created_by')->constrained('users')->restrictOnDelete()->nullable();
-            $table->foreignId('approved_by')->constrained('users')->restrictOnDelete();
+            $table->foreignId('approved_by')->constrained('users')->restrictOnDelete()->nullable();
             $table->date('approved_at');
             $table->text('notes')->nullable();
             $table->timestamps();

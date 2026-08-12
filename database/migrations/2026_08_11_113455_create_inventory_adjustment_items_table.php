@@ -14,9 +14,9 @@ return new class extends Migration
             $table->foreignId('product_id')->constrained()->restrictOnDelete();
             $table->foreignId('warehouse_location_id')->constrained()->restrictOnDelete();
 
-            $table->integer('old_quantity');
-            $table->integer('new_quantity');
-            $table->integer('difference');
+            $table->decimal('old_quantity', 12, 3);
+            $table->decimal('new_quantity', 12, 3);
+            $table->decimal('difference', 12, 3);
             $table->timestamps();
         });
     }

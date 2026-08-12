@@ -11,8 +11,8 @@ return new class extends Migration
         Schema::create('purchase_orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('supplier_id')->constrained()->cascadeOnDelete();
-            $table->string('created_by')->constrained('users')->restrictOnDelete();
-            $table->string('approved_by')->constrained('users')->restrictOndelete();
+            $table->foreignId('created_by')->constrained('users')->restrictOnDelete();
+            $table->foreignId('approved_by')->constrained('users')->restrictOndelete();
             $table->date('order_date');
             $table->date('expected_delivery_date');
             $table->enum('status', ['draft', 'pending', 'approved', 'cancelled', 'completed'])->default('pending');

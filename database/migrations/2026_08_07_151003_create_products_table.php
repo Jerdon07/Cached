@@ -10,9 +10,9 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('category_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('brand_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('unit_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('category_id')->constrained()->restrictOnDelete();
+            $table->foreignId('brand_id')->constrained()->nullOnDelete()->nullable();
+            $table->foreignId('unit_id')->constrained()->nullOnDelete()->nullable();
 
             $table->string('name')-> unique();
             $table->string('sku')->nullable();
@@ -22,6 +22,7 @@ return new class extends Migration
             $table->decimal('minimum_stock', 12, 3);
             $table->boolean('is_active');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

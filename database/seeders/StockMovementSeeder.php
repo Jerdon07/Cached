@@ -18,7 +18,7 @@ class StockMovementSeeder extends Seeder
             'movement_type' => StockMovementType::Sale,
             'quantity' => 20.00,
             'performed_by' => 1,
-            'remarks' => 'The product stock movement for this is sale.'
+            'notes' => 'The product stock movement for this is sale.'
         ]);
     }
 }

@@ -10,8 +10,8 @@ return new class extends Migration
     {
         Schema::create('product_suppliers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('supplier_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('product_id')->constrained()->restrictOnDelete();
+            $table->foreignId('supplier_id')->constrained()->restrictOnDelete();
 
             $table->string('supplier_sku')->nullable();
             $table->decimal('cost_price', 12, 3);

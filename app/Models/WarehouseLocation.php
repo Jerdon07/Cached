@@ -6,10 +6,13 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 #[Fillable(['warehouse_id', 'zone', 'aisle', 'rack', 'shelf', 'bin', 'description'])]
 class WarehouseLocation extends Model
 {
+    use SoftDeletes;
+
     public function warehouse(): BelongsTo
     {
         return $this->belongsTo(Warehouse::class);

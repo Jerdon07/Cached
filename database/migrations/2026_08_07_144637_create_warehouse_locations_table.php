@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('warehouse_locations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('warehouse_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('warehouse_id')->constrained()->restrictOnDelete();
             $table->string('zone')->nullable();
             $table->string('aisle')->nullable();
             $table->string('rack')->nullable();
@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('bin')->nullable();
             $table->text('description')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

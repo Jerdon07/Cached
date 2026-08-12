@@ -36,7 +36,7 @@ class Product extends Model
             ]);
     }
 
-    public function inventoryAdjustMentItems(): HasMany
+    public function inventoryAdjustmentItems(): HasMany
     {
         return $this->hasMany(InventoryAdjustmentItem::class);
     }

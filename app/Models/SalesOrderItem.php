@@ -16,6 +16,6 @@ class SalesOrderItem extends Model
 
     public function product(): BelongsTo
     {
-        return $this->belognsTo(Product::class);
+        return $this->belongsTo(Product::class);
     }
 }

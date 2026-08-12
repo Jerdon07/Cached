@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Collection;
 
 #[Fillable(['name', 'email', 'password'])]
 #[Hidden(['password', 'remember_token'])]
@@ -36,14 +37,20 @@ class User extends Authenticatable
         return $this->belongsToMany(Role::class);
     }
 
-    public function permissions()
+    public function permissions(): Collection
     {
-        return $this->roles()
+        return once(fn () => $this->roles()
             ->with('permissions')
             ->get()
             ->pluck('permissions')
             ->flatten()
-            ->unique('id');
+            ->unique('id')
+        );
+    }
+
+    public function hasPermissionTo(string $permission): bool
+    {
+        return $this->permissions()->pluck('name')->contains($permission);
     }
 
     public function logs(): HasMany

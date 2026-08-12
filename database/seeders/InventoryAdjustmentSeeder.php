@@ -15,7 +15,6 @@ class InventoryAdjustmentSeeder extends Seeder
         InventoryAdjustment::firstOrCreate([
             'status' => InventoryAdjustmentStatus::Pending
         ], [
-            'adjustment_number' => 5,
             'reason' => InventoryAdjustmentReason::Damaged,
             'created_by' => 1,
             'approved_by' => 1,

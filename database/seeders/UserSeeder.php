@@ -6,19 +6,66 @@ use App\Models\Role;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
     public function run(): void
     {
-        $adminUser = User::create([
-            'name' => 'Administrator',
-            'email' => 'jdlitaoen+admin@gmail.com',
-            'email_verified_at' => now(),
-            'password' => 'password',
-        ]);
-        $adminRole = Role::where('name', 'Administrator')->first();
+        $users = [
+            [
+                'name' => 'System Administrator',
+                'email' => 'jdlitaoen+admin@gmail.com',
+                'role' => 'System Administrator',
+            ], [
+                'name' => 'Purchasing Officer',
+                'email' => 'jdlitaoen+pofficer@gmail.com',
+                'role' => 'Purchasing Officer',
+            ], [
+                'name' => 'Purchasing Manager',
+                'email' => 'jdlitaoen+pmanager@gmail.com',
+                'role' => 'Purchasing Manager',
+            ], [
+                'name' => 'Warehouse Manager',
+                'email' => 'jdlitaoen+wmanager@gmail.com',
+                'role' => 'Warehouse Manager',
+            ], [
+                'name' => 'Warehouse Staff',
+                'email' => 'jdlitaoen+wstaff@gmail.com',
+                'role' => 'Warehouse Staff',
+            ], [
+                'name' => 'Sales Representative',
+                'email' => 'jdlitaoen+srepresentative@gmail.com',
+                'role' => 'Sales Representative',
+            ], [
+                'name' => 'Sales Manager',
+                'email' => 'jdlitaoen+smanager@gmail.com',
+                'role' => 'Sales Manager',
+            ], [
+                'name' => 'Inventory Controller',
+                'email' => 'jdlitaoen+icontroller@gmail.com',
+                'role' => 'Inventory Controller',
+            ], [
+                'name' => 'Finance Officer',
+                'email' => 'jdlitaoen+fofficer@gmail.com',
+                'role' => 'Finance Officer',
+            ], [
+                'name' => 'General Manager',
+                'email' => 'jdlitaoen+gmanager@gmail.com',
+                'role' => 'General Manager',
+            ],
+        ];
 
-        $adminUser->roles()->attach($adminRole->id);
+        foreach ($users as $userData) {
+            $role = Role::where('name', $userData['role'])->firstOrFail();
+
+            $user = User::create([
+                'name' => $userData['name'],
+                'email' => $userData['email'],
+                'password' => Hash::make('password'),
+            ]);
+
+            $user->roles()->attach($role->id);
+        }
     }
 }

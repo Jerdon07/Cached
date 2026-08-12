@@ -11,7 +11,7 @@ class AdministratorPermissionSeeder extends Seeder
 {
     public function run(): void
     {
-        $administrator = Role::where('name', 'Administrator')->firstOrFail();
+        $administrator = Role::where('name', 'System Administrator')->firstOrFail();
 
         $administrator->permissions()->sync(
             Permission::whereIn('name', [

@@ -16,7 +16,6 @@ class PurchaseOrderItemSeeder extends Seeder
         ], [
             'quantity' => 20.00,
             'unit_cost' => 50.00,
-            'subtotal' => 50.00,
         ]);
     }
 }

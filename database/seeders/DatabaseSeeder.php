@@ -48,6 +48,8 @@ class DatabaseSeeder extends Seeder
 
             SalesOrderSeeder::class,
             SalesOrderItemSeeder::class,
+
+            AuditLogSeeder::class,
         ]);
     }
 }

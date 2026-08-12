@@ -10,8 +10,8 @@ return new class extends Migration
     {
         Schema::create('stock_movements', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('warehouse_location_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('product_id')->constrained()->restrictOnDelete();
+            $table->foreignId('warehouse_location_id')->constrained()->restrictOnDelete();
 
             $table->enum('movement_type', ['sale', 'transfer in', 'transfer out', 'adjustment', 'return', 'damage', 'loss', 'count correction']);
             $table->decimal('quantity', 12, 3);

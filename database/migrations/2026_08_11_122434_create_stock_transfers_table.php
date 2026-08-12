@@ -14,8 +14,8 @@ return new class extends Migration
             $table->foreignId('to_warehouse_id')->constrained('warehouses')->restrictOnDelete();
 
             $table->enum('status', ['draft', 'pending', 'approved', 'in_transit', 'received', 'cancelled', 'rejected']);
-            $table->foreignId('requested_by')->constrained('users')->restrictOnDelete()->nullable();
-            $table->foreignId('approved_by')->constrained('users')->restrictOnDelete()->nullable();
+            $table->foreignId('requested_by')->nullable()->constrained('users')->restrictOnDelete();
+            $table->foreignId('approved_by')->nullable()->constrained('users')->restrictOnDelete();
             $table->timestamps();
         });
     }

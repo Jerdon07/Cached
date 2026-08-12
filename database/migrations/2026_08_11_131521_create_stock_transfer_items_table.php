@@ -10,8 +10,8 @@ return new class extends Migration
     {
         Schema::create('stock_transfer_items', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('stock_transfer_id')->constrained()->rejectOnDelete();
-            $table->foreignId('product_id')->constrained()->rejectOnDelete();
+            $table->foreignId('stock_transfer_id')->constrained()->restrictOnDelete();
+            $table->foreignId('product_id')->constrained()->restrictOnDelete();
             $table->decimal('quantity', 12, 3);
             $table->timestamps();
         });

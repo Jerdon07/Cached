@@ -12,8 +12,8 @@ return new class extends Migration
             $table->id();
             $table->text('reason');
             $table->enum('status', ['draft', 'pending', 'approved', 'rejected', 'cancelled', 'completed'])->default('pending');
-            $table->foreignId('created_by')->constrained('users')->rejectOnDelete();
-            $table->foreignId('approved_by')->constrained('users')->rejectOnDelete();
+            $table->foreignId('created_by')->constrained('users')->restrictOnDelete();
+            $table->foreignId('approved_by')->constrained('users')->restrictOnDelete();
             $table->date('approved_at');
             $table->text('notes')->nullable();
             $table->timestamps();

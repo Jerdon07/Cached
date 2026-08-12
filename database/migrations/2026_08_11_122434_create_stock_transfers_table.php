@@ -10,12 +10,12 @@ return new class extends Migration
     {
         Schema::create('stock_transfers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('from_warehouse_id')->constrained('warehouses')->rejectOnDelete();
-            $table->foreignId('to_warehouse_id')->constrained('warehouses')->rejectOnDelete();
+            $table->foreignId('from_warehouse_id')->constrained('warehouses')->restrictOnDelete();
+            $table->foreignId('to_warehouse_id')->constrained('warehouses')->restrictOnDelete();
 
             $table->enum('status', ['draft', 'pending', 'approved', 'in_transit', 'received', 'cancelled', 'rejected']);
-            $table->foreignId('requested_by')->constrained('users')->rejectOnDelete();
-            $table->foreignId('approved_by')->constrained('users')->rejectOnDelete();
+            $table->foreignId('requested_by')->constrained('users')->restrictOnDelete();
+            $table->foreignId('approved_by')->constrained('users')->restrictOnDelete();
             $table->timestamps();
         });
     }

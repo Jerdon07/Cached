@@ -10,9 +10,9 @@ return new class extends Migration
     {
         Schema::create('inventory_adjustment_items', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('inventory_adjustment_id')->constrained('inventory_adjustments')->rejectOnDelete();
-            $table->foreignId('product_id')->constrained()->rejectOnDelete();
-            $table->foreignId('warehouse_location_id')->constrained()->rejectOnDelete();
+            $table->foreignId('inventory_adjustment_id')->constrained('inventory_adjustments')->restrictOnDelete();
+            $table->foreignId('product_id')->constrained()->restrictOnDelete();
+            $table->foreignId('warehouse_location_id')->constrained()->restrictOnDelete();
 
             $table->integer('old_quantity');
             $table->integer('new_quantity');

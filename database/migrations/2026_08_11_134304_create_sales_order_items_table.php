@@ -10,8 +10,8 @@ return new class extends Migration
     {
         Schema::create('sales_order_items', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('sales_order_id')->constrained()->rejectOnDelete();
-            $table->foreignId('product_id')->constrained()->rejectOnDelete();
+            $table->foreignId('sales_order_id')->constrained()->restrictOnDelete();
+            $table->foreignId('product_id')->constrained()->restrictOnDelete();
 
             $table->decimal('quantity', 12, 3);
             $table->decimal('unit_price', 12, 3);

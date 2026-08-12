@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('sales_orders', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('customer_id')->constrained()->rejectOnDelete();
+            $table->foreignId('customer_id')->constrained()->restrictOnDelete();
             $table->date('order_date');
             $table->enum('status', ['draft', 'pending', 'approved', 'processing', 'ready', 'completed', 'cancelled', 'rejected']);
             $table->timestamps();

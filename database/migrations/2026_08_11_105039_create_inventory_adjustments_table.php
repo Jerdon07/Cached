@@ -11,8 +11,8 @@ return new class extends Migration
         Schema::create('inventory_adjustments', function (Blueprint $table) {
             $table->id();
             $table->text('reason');
-            $table->enum('status', ['draft', 'pending', 'approved', 'rejected', 'cancelled', 'completed'])->default('pending');
-            $table->foreignId('created_by')->constrained('users')->restrictOnDelete();
+            $table->enum('status', ['draft', 'pending', 'approved', 'rejected', 'cancelled', 'completed'])->default('draft');
+            $table->foreignId('created_by')->constrained('users')->restrictOnDelete()->nullable();
             $table->foreignId('approved_by')->constrained('users')->restrictOnDelete();
             $table->date('approved_at');
             $table->text('notes')->nullable();

@@ -13,6 +13,7 @@ return new class extends Migration
             $table->string('name')->unique();
             $table->string('abbreviation')->unique();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

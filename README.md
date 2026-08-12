@@ -167,7 +167,6 @@ The system includes:
 - Laravel
 - Filament
 - MySQL or PostgreSQL
-- Spatie Laravel Permission
 - Laravel Queue
 - Laravel Notifications
 

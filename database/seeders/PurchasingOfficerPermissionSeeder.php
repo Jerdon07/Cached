@@ -52,7 +52,7 @@ class PurchasingOfficerPermissionSeeder extends Seeder
 
                 'view_any_stock_movements',
                 'view_stock_movements',
-            ])
+            ])->pluck('id')
         );
     }
 }

@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('sku')->nullable();
             $table->string('barcode')->nullable();
             $table->text('description')->nullable();
-            $table->decimal('selling_price', 12, 3);
-            $table->decimal('minimum_stock', 12, 3);
+            $table->decimal('selling_price', 10, 2);
+            $table->decimal('minimum_stock', 10, 2);
             $table->boolean('is_active');
             $table->timestamps();
             $table->softDeletes();

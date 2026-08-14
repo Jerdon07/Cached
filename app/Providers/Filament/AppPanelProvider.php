@@ -30,6 +30,7 @@ class AppPanelProvider extends PanelProvider
             ->path('')
             ->login()
             ->sidebarCollapsibleOnDesktop()
+            ->resourceCreatePageRedirect('index')
             ->colors([
                 'primary' => Color::Blue,
             ])

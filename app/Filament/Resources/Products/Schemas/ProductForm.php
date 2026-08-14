@@ -17,39 +17,51 @@ class ProductForm
                 TextInput::make('name')
                     ->required()
                     ->maxLength(255)
-                    ->unique(ignoreRecord: true),
+                    ->unique(ignoreRecord: true)
+                    ->helperText('Enter product name'),
                 TextInput::make('sku')
-                    ->maxLength(255),
+                    ->label('Stock Keeping Unit (SKU)')
+                    ->maxLength(255)
+                    ->helperText('Enter SKU'),
                 TextInput::make('barcode')
+                    ->helperText('Enter barcode')
                     ->maxLength(255),
                 Select::make('category_id')
                     ->relationship('category', 'name')
                     ->required()
                     ->searchable()
                     ->noSearchResultsMessage('No categories found.')
-                    ->preload(),
+                    ->preload()
+                    ->helperText('Select category'),
                 Select::make('brand_id')
                     ->relationship('brand', 'name')
                     ->required()
                     ->searchable()
-                    ->preload(),
+                    ->preload()
+                    ->helperText('Select brand'),
                 Select::make('unit_id')
                     ->relationship('unit', 'name')
                     ->required()
                     ->searchable()
-                    ->preload(),
+                    ->preload()
+                    ->helperText('Select unit of measurement'),
                 TextInput::make('selling_price')
                     ->required()
                     ->numeric()
                     ->prefix('₱')
-                    ->minValue(0),
+                    ->minValue(0)
+                    ->helperText('Enter selling price'),
                 TextInput::make('minimum_stock')
                     ->required()
                     ->numeric()
                     ->minValue(0)
-                    ->default(0),
+                    ->default(0)
+                    ->helperText('Enter minimum stock'),
                 Toggle::make('is_active')
-                    ->default(true),
+                    ->default(true)
+                    ->onColor('success')
+                    ->offColor('danger')
+                    ->helperText('Check if active'),
                 Textarea::make('description')
                     ->columnSpanFull(),
             ]);

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('address');
             $table->string('city');
             $table->string('province');
-            $table->integer('postal_code');
+            $table->string('postal_code');
             $table->text('remarks')->nullable();
             $table->timestamps();
         });

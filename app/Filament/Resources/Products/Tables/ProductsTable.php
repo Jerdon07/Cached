@@ -14,6 +14,7 @@ use Filament\Actions\RestoreBulkAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Filters\TrashedFilter;
@@ -34,6 +35,7 @@ class ProductsTable
                     ->toggleable(),
 
                 TextColumn::make('category.name')
+                    ->badge()
                     ->sortable(),
 
                 TextColumn::make('brand.name')
@@ -50,8 +52,9 @@ class ProductsTable
                     ->numeric()
                     ->sortable(),
 
-                IconColumn::make('is_active')
-                    ->boolean(),
+                ToggleColumn::make('is_active')
+                    ->onColor('success')
+                    ->offColor('danger'),
 
                 TextColumn::make('deleted_at')
                     ->dateTime()

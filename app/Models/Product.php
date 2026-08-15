@@ -31,12 +31,13 @@ class Product extends Model
 
     public function suppliers(): BelongsToMany
     {
-        return $this->belongsToMany(Supplier::class)
+        return $this->belongsToMany(Supplier::class, 'product_suppliers')
             ->withPivot([
                 'supplier_sku',
                 'cost_price',
                 'preferred',
-            ]);
+            ])
+            ->withTimestamps();
     }
 
     public function inventoryAdjustmentItems(): HasMany

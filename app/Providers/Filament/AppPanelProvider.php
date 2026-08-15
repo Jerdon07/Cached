@@ -59,8 +59,14 @@ class AppPanelProvider extends PanelProvider
                 Authenticate::class,
             ])
             ->navigationGroups([
-                NavigationGroup::make()->label('Product Management'),
-                NavigationGroup::make()->label('Warehouse Management'),
+                NavigationGroup::make()->label('Dashboard'), /* Different dashboard based on role (Overview, Inventory Statistics, Sales Statistics, Purchasing Statistics, Low-Stock alerts, Pending Approvals, Recent Activity) */
+                NavigationGroup::make()->label('Catalog'), /* For maintaining the products that the business sells (Products, Categories, Brands, Units) */
+                NavigationGroup::make()->label('Warehousing'), /* Everything concerning physical storage (Warehouses, Storage Locations, Stock Transfers, Stock Counts, Inventory Adjustments) */
+                NavigationGroup::make()->label('Inventory'), /* This is the actual stock management section (Inventory, Stock Movements, Inventory Adjustments, Stock Transfers, Stock Counts) */
+                NavigationGroup::make()->label('Purchasing'), /* For acquiring inventory from suppliers (Suppliers, Purchase Orders, Goods Receipts) */
+                NavigationGroup::make()->label('Sales'), /* For selling inventory (Customers, Sales Orders) */
+                NavigationGroup::make()->label('Reports'), /* Management information rather than CRUD (Inventory Report, Stock Movement Report, Purchase Report, Sales Report, Supplier Report, Inventory Validation, Stock Variance, Low Stock Report) */
+                NavigationGroup::make()->label('Administration'), /* Only system administrators (Users, Roles, Permissions, Activity Log, System Settings) */
             ]);
     }
 }

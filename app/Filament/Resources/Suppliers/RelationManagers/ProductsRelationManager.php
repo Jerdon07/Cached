@@ -51,6 +51,7 @@ class ProductsRelationManager extends RelationManager
                     ->money('USD'),
 
                 IconColumn::make('pivot.preferred')
+                    ->label('Preferably')
                     ->boolean(),
             ])
             ->headerActions([

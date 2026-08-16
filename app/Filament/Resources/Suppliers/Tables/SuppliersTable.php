@@ -17,11 +17,18 @@ class SuppliersTable
     {
         return $table
             ->columns([
-                TextColumn::make('company_name'),
-                TextColumn::make('contact_person'),
+                TextColumn::make('company_name')
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('contact_person')
+                    ->searchable(),
                 TextColumn::make('phone'),
-                TextColumn::make('email'),
+                TextColumn::make('email')
+                    ->searchable(),
                 TextColumn::make('address'),
+                TextColumn::make('products_count')
+                    ->counts('products')
+                    ->label('Products'),
             ])
             ->defaultSort('created_at', 'desc')
             ->recordActions([

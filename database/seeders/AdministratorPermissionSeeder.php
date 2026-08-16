@@ -15,6 +15,43 @@ class AdministratorPermissionSeeder extends Seeder
 
         $administrator->permissions()->sync(
             Permission::whereIn('name', [
+                /* CATALOG */
+                'view_products',
+                'view_any_products',
+                'create_products',
+                'update_products',
+                'delete_products',
+                'delete_any_products',
+                'restore_products',
+                'restore_any_products',
+
+                'view_categories',
+                'view_any_categories',
+                'create_categories',
+                'update_categories',
+                'delete_categories',
+                'delete_any_categories',
+                'restore_categories',
+                'restore_any_categories',
+
+                'view_brands',
+                'view_any_brands',
+                'create_brands',
+                'update_brands',
+                'delete_brands',
+                'delete_any_brands',
+                'restore_brands',
+                'restore_any_brands',
+
+                'view_units',
+                'view_any_units',
+                'create_units',
+                'update_units',
+                'delete_units',
+                'delete_any_units',
+                'restore_units',
+                'restore_any_units',
+
                 'view_any_users',
                 'view_users',
                 'create_users',
@@ -32,24 +69,6 @@ class AdministratorPermissionSeeder extends Seeder
                 'delete_any_roles',
                 'restore_roles',
                 'restore_any_roles',
-
-                'view_categories',
-                'view_any_categories',
-                'create_categories',
-                'update_categories',
-                'delete_categories',
-                'delete_any_categories',
-                'restore_categories',
-                'restore_any_categories',
-
-                'view_products',
-                'view_any_products',
-                'create_products',
-                'update_products',
-                'delete_products',
-                'delete_any_products',
-                'restore_products',
-                'restore_any_products',
                 
                 'view_suppliers',
                 'view_any_suppliers',

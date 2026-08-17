@@ -19,6 +19,11 @@ class WarehouseLocation extends Model
         return $this->belongsTo(Warehouse::class);
     }
 
+    public function stockMovements(): HasMany
+    {
+        return $this->hasMany(StockMovement::class);
+    }
+
     public function goodsReceiptItems(): HasMany
     {
         return $this->hasMany(GoodsReceiptItem::class);

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Attributes\Fillable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -48,5 +49,26 @@ class Product extends Model
     public function salesOrderItems(): HasMany
     {
         return $this->hasMany(SalesOrderItem::class);
+    }
+
+    public function scopeWithStockOnHand(Builder $query): void
+    {
+        $query->addSelect([
+        'stock_on_hand' => StockMovement::query()
+            ->selectRaw('COALESCE(SUM(quantity), 0)')
+            ->whereColumn('product_id', $this->getTable().'.id'),
+        ])->withCasts(['stock_on_hand' => 'decimal:3']);
+    }
+
+    public function scopeLowStock(Builder $query): void
+    {
+        $products = $this->getTable();
+        $movements = (new StockMovement)->getTable();
+
+        $query->whereRaw("(
+            SELECT COALESCE(SUM(quantity), 0)
+            FROM {$movements}
+            WHERE {$movements}.product_id = {$products}.id
+        ) < {$products}.minimum_stock");
     }
 }

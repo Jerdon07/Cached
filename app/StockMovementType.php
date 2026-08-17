@@ -26,4 +26,20 @@ enum StockMovementType: string
             self::CountCorrection => 'Count Correction',
         };
     }
+
+    public function isAlwaysNegative(): bool
+    {
+        return match($this) {
+            self::Sale, self::TransferOut, self::Damage, self::Loss => true,
+            default => false,
+        };
+    }
+
+    public function isAlwaysPositive(): bool
+    {
+        return match($this) {
+            self::TransferIn, self::Return => true,
+            default => false,
+        };
+    }
 }

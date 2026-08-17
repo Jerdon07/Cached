@@ -27,4 +27,9 @@ class StockMovement extends Model
     {
         return $this->belongsTo(WarehouseLocation::class);
     }
+
+    public function performedBy(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'performed_by');
+    }
 }

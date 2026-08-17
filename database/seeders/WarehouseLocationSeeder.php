@@ -19,5 +19,7 @@ class WarehouseLocationSeeder extends Seeder
             'bin' => 'Bin C', 
             'description' => 'A location for this warehouse.'
         ]);
+
+        WarehouseLocation::factory(40)->create();
     }
 }

@@ -19,6 +19,6 @@ class CategorySeeder extends Seeder
             Category::firstOrCreate($category);
         }
 
-        Category::factory(5);
+        Category::factory(4)->create();
     }
 }

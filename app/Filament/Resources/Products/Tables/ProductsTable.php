@@ -53,7 +53,7 @@ class ProductsTable
 
                 TextColumn::make('stock_on_hand')
                     ->label('Stock on Hand')
-                    ->numeric(3)
+                    ->numeric()
                     ->sortable()
                     ->color(fn ($record) => $record->stock_on_hand < $record->minimum_stock ? 'danger' : null),
 

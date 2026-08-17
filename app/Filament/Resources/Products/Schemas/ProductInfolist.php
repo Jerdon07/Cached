@@ -24,6 +24,9 @@ class ProductInfolist
                     ->money('PHP'),
                 TextEntry::make('minimum_stock')
                     ->numeric(),
+                TextEntry::make('stock_on_hand')
+                    ->numeric()
+                    ->color(fn ($record) => $record->stock_on_hand < $record->minimum_stock ? 'danger' : null),
                 IconEntry::make('is_active'),
                 TextEntry::make('created_at')
                     ->dateTime(),

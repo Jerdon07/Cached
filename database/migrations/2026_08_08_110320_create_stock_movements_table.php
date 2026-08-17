@@ -15,7 +15,7 @@ return new class extends Migration
 
             $table->enum('movement_type', ['sale', 'transfer in', 'transfer out', 'adjustment', 'return', 'damage', 'loss', 'count correction']);
             $table->decimal('quantity', 12, 3);
-            $table->nullableMorphs('reference');
+            $table->nullableMorphs('referenceable');
             $table->foreignId('performed_by')->constrained('users')->restrictOnDelete();
             $table->text('notes')->nullable();
             $table->timestamps();

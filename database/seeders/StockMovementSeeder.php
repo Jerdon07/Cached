@@ -16,7 +16,7 @@ class StockMovementSeeder extends Seeder
             'warehouse_location_id' => 1,
         ], [
             'movement_type' => StockMovementType::Sale,
-            'quantity' => 20.00,
+            'quantity' => -20.00,
             'performed_by' => 1,
             'notes' => 'The product stock movement for this is sale.'
         ]);

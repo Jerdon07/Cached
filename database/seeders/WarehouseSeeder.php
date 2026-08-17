@@ -18,5 +18,7 @@ class WarehouseSeeder extends Seeder
         foreach ($warehouses as $warehouse) {
             Warehouse::firstOrCreate($warehouse);
         }
+
+        Warehouse::factory(5)->create();
     }
 }

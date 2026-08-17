@@ -34,7 +34,7 @@ class ProductsTable
 
                 TextColumn::make('sku')
                     ->searchable()
-                    ->toggleable(),
+                    ->toggleable(isToggledHiddenByDefault: true),
 
                 TextColumn::make('category.name')
                     ->badge()
@@ -44,10 +44,11 @@ class ProductsTable
                     ->sortable(),
 
                 TextColumn::make('unit.abbreviation')
-                    ->label('Unit'),
+                    ->label('Unit')
+                    ->toggleable(isToggledHiddenByDefault: true),
 
                 TextColumn::make('selling_price')
-                    ->money('USD')
+                    ->money('PHP')
                     ->sortable(),
 
                 TextColumn::make('stock_on_hand')
@@ -58,7 +59,8 @@ class ProductsTable
 
                 TextColumn::make('minimum_stock')
                     ->numeric()
-                    ->sortable(),
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
 
                 ToggleColumn::make('is_active')
                     ->onColor('success')

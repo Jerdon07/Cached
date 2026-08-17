@@ -41,6 +41,11 @@ class Product extends Model
             ->withTimestamps();
     }
 
+    public function stockMovements(): HasMany
+    {
+        return $this->hasMany(StockMovement::class);
+    }
+
     public function inventoryAdjustmentItems(): HasMany
     {
         return $this->hasMany(InventoryAdjustmentItem::class);

@@ -27,7 +27,7 @@ class AppPanelProvider extends PanelProvider
         return $panel
             ->default()
             ->id('app')
-            ->path('')
+            ->path('app')
             ->login()
             ->sidebarCollapsibleOnDesktop()
             ->resourceCreatePageRedirect('index')

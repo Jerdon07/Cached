@@ -2,6 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 
+Route::get('/', function () {
+    return auth()->check()
+        ? redirect()->route('filament.app.pages.dashboard')
+        : view('welcome');
+})->name('home');
+
 if (!app()->isProduction()) {
     Route::prefix('dev')->name('dev.')->group(function () {
         Route::get('login/systemadministration', function () {

@@ -17,5 +17,7 @@ class SupplierSeeder extends Seeder
         foreach($suppliers as $supplier) {
             Supplier::firstOrCreate(['email' => $supplier['email']], $supplier);
         }
+
+        Supplier::factory(10)->create();
     }
 }

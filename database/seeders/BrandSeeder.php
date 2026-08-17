@@ -18,5 +18,7 @@ class BrandSeeder extends Seeder
         foreach ($brands as $brand) {
             Brand::firstOrCreate($brand);
         }
+
+        Brand::factory(20)->create();
     }
 }

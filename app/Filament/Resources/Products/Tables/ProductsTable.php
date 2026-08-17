@@ -15,10 +15,12 @@ use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ToggleColumn;
+use Filament\Tables\Filters\Filter;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 
 class ProductsTable
 {
@@ -48,6 +50,12 @@ class ProductsTable
                     ->money('USD')
                     ->sortable(),
 
+                TextColumn::make('stock_on_hand')
+                    ->label('Stock on Hand')
+                    ->numeric(3)
+                    ->sortable()
+                    ->color(fn ($record) => $record->stock_on_hand < $record->minimum_stock ? 'danger' : null),
+
                 TextColumn::make('minimum_stock')
                     ->numeric()
                     ->sortable(),
@@ -68,6 +76,10 @@ class ProductsTable
 
                 SelectFilter::make('brand_id')
                     ->relationship('brand', 'name'),
+
+                Filter::make('low_stock')
+                    ->label('Low stock only')
+                    ->query(fn (Builder $query): Builder => $query->lowStock()),
 
                 TernaryFilter::make('is_active'),
 

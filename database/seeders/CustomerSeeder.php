@@ -17,5 +17,7 @@ class CustomerSeeder extends Seeder
         foreach ($customers as $customer) {
             Customer::firstOrCreate($customer);
         }
+
+        Customer::factory(20)->create();
     }
 }

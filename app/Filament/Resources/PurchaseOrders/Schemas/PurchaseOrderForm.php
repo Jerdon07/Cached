@@ -2,12 +2,19 @@
 
 namespace App\Filament\Resources\PurchaseOrders\Schemas;
 
+use App\Models\Product;
+use App\Models\Supplier;
 use App\PurchaseOrderStatus;
 use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
+use Filament\Schemas\Components\Utilities\Get;
+use Filament\Schemas\Components\Utilities\Set;
 use Filament\Schemas\Schema;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\DB;
 
 class PurchaseOrderForm
 {
@@ -16,23 +23,83 @@ class PurchaseOrderForm
         return $schema
             ->components([
                 Select::make('supplier_id')
-                    ->relationship('supplier', 'id')
-                    ->required(),
-                TextInput::make('created_by')
-                    ->numeric(),
-                TextInput::make('approved_by')
-                    ->numeric(),
-                DatePicker::make('order_date')
-                    ->required(),
+                    ->relationship('supplier', 'company_name')
+                    ->required()
+                    ->live()
+                    ->afterStateUpdated(
+                        fn (Get $get, Set $set) => static::updateUnitCost($get, $set),
+                    ),
                 DatePicker::make('expected_delivery_date')
-                    ->required(),
-                Select::make('status')
-                    ->options(PurchaseOrderStatus::class)
-                    ->default('draft')
-                    ->required(),
+                    ->hidden(),
+                Repeater::make('items')
+                    ->relationship('items')
+                    ->schema([
+                        Select::make('product_id')
+                            ->relationship(
+                                'product', 
+                                'name',
+                                function (Get $get, Builder $query) {
+                                    $supplier_id = $get('../../supplier_id');
+
+                                    if (!$supplier_id) return $query->whereRaw('1 = 0');
+
+                                    return $query->whereIn('products.id', function ($subQuery) use ($supplier_id) {
+                                        $subQuery->select('product_id')
+                                            ->from('product_suppliers')
+                                            ->where('supplier_id', $supplier_id);
+                                    });
+                                }
+                            )
+                            ->required()
+                            ->live()
+                            ->afterStateUpdated(
+                                fn (Get $get, Set $set) => static::updateUnitCost($get, $set),
+                            ),
+                        TextInput::make('quantity')
+                            ->numeric()
+                            ->required()
+                            ->disabled(fn (Get $get) => !$get('product_id'))
+                            ->suffix(function (Get $get): string|null {
+                                $productId = $get('product_id');
+
+                                if (! $productId) {
+                                    return null;
+                                }
+
+                                return Product::find($productId)?->unit?->abbreviation;
+                            }),
+                        TextInput::make('unit_cost')
+                            ->numeric()
+                            ->required()
+                            ->default(function (Get $get): int|null {
+                                $supplier_id = $get('../../supplier_id');
+                                $product_id = $get('product_id');
+
+                                if (!$supplier_id || !$product_id)  return null;
+
+                                return Supplier::find($supplier_id)->products()->find($product_id)->pivot->cost_price;
+                            })
+                    ]),
                 Textarea::make('notes')
                     ->columnSpanFull(),
-                DatePicker::make('approved_at'),
             ]);
+    }
+
+    public static function updateUnitCost(Get $get,Set $set)
+    {
+        $supplier_id = $get('../../supplier_id');
+        $product_id = $get('product_id');
+
+        if (!$supplier_id || !$product_id) {
+            $set('unit_cost', null);
+            return;
+        };
+
+        $unit_cost = DB::table('product_suppliers')
+            ->where('supplier_id', $supplier_id)
+            ->where('product_id', $product_id)
+            ->value('cost_price');
+        
+        $set('unit_cost', $unit_cost);
     }
 }

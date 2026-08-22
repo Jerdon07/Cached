@@ -89,7 +89,7 @@ class AdministratorPermissionSeeder extends Seeder
                 'restore_any_customers',
 
                 'view_purchase_orders',
-                'view_purchase_orders',
+                'view_any_purchase_orders',
 
                 'view_purchase_order_items',
                 'view_any_purchase_order_items',

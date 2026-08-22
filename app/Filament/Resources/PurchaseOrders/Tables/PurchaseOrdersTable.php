@@ -15,13 +15,11 @@ class PurchaseOrdersTable
     {
         return $table
             ->columns([
-                TextColumn::make('supplier.id')
+                TextColumn::make('supplier.company_name')
                     ->searchable(),
-                TextColumn::make('created_by')
-                    ->numeric()
+                TextColumn::make('createdBy.name')
                     ->sortable(),
-                TextColumn::make('approved_by')
-                    ->numeric()
+                TextColumn::make('approvedBy.name')
                     ->sortable(),
                 TextColumn::make('order_date')
                     ->date()

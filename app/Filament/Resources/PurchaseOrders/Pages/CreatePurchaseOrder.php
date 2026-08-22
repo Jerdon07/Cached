@@ -4,6 +4,7 @@ namespace App\Filament\Resources\PurchaseOrders\Pages;
 
 use App\Filament\Resources\PurchaseOrders\PurchaseOrderResource;
 use App\PurchaseOrderStatus;
+use Filament\Notifications\Notification;
 use Filament\Resources\Pages\CreateRecord;
 use Override;
 
@@ -17,5 +18,13 @@ class CreatePurchaseOrder extends CreateRecord
         $data['status'] = PurchaseOrderStatus::Pending;
 
         return $data;
+    }
+
+    protected function getCreatedNotification(): ?Notification
+    {
+        return Notification::make()
+            ->success()
+            ->title('Purchase Order Submitted')
+            ->body('Wait for Manager to approve your purchase order');
     }
 }

@@ -19,9 +19,16 @@ use Filament\Actions\RestoreBulkAction;
 use Filament\Actions\ViewAction;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
+use Filament\Infolists\Components\RepeatableEntry;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Resources\RelationManagers\RelationManager;
+use Filament\Schemas\Components\Icon;
+use Filament\Schemas\Components\Section;
+use Filament\Schemas\Components\Tabs;
+use Filament\Schemas\Components\Tabs\Tab;
 use Filament\Schemas\Schema;
+use Filament\Support\Enums\FontWeight;
+use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
@@ -50,19 +57,42 @@ class WarehouseLocationsRelationManager extends RelationManager
     {
         return $schema
             ->components([
-                TextEntry::make('zone')
-                    ->placeholder('-'),
-                TextEntry::make('aisle')
-                    ->placeholder('-'),
-                TextEntry::make('rack')
-                    ->placeholder('-'),
-                TextEntry::make('shelf')
-                    ->placeholder('-'),
-                TextEntry::make('bin')
-                    ->placeholder('-'),
                 TextEntry::make('description')
-                    ->placeholder('-')
-                    ->columnSpanFull(),
+                    ->columnSpanFull()
+                    ->hiddenLabel()
+                    ->weight(FontWeight::SemiBold)
+                    ->placeholder('-'),
+                Tabs::make()
+                    ->columnSpanFull()
+                    ->tabs([
+                        Tab::make('Details')
+                            ->columns(5)
+                            ->schema([
+                                TextEntry::make('zone')
+                                    ->placeholder('-'),
+                                TextEntry::make('aisle')
+                                    ->placeholder('-'),
+                                TextEntry::make('rack')
+                                    ->placeholder('-'),
+                                TextEntry::make('shelf')
+                                    ->placeholder('-'),
+                                TextEntry::make('bin')
+                                    ->placeholder('-'),
+                            ]),
+                        Tab::make('Items')
+                            ->schema([
+                                RepeatableEntry::make('items')
+                                    ->columns(2)
+                                    ->hiddenLabel()
+                                    ->schema([
+                                        TextEntry::make('product.name')
+                                            ->label('Product Name'),
+                                        TextEntry::make('new_quantity')
+                                            ->label('Available Quantity')
+                                            ->suffix(fn ($record) => $record->product->unit->abbreviation)
+                                    ]),
+                            ]),
+                    ]),
                 TextEntry::make('created_at')
                     ->dateTime()
                     ->placeholder('-'),

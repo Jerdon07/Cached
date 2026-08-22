@@ -11,23 +11,40 @@ class PermissionSeeder extends Seeder
     public function run(): void
     {
         $resources = [
+            // Access Control
             'users',
             'roles',
+
+            // Catalog
             'products',
             'categories',
             'brands',
             'units',
+
+            // Purchasing
             'suppliers',
-            'customers',
-            'warehouses',
-            'warehouse_locations',
             'purchase_orders',
             'purchase_order_items',
             'goods_receipts',
-            'sales_orders',
-            'sales_order_items',
+            'goods_receipt_items',
+
+            // Warehousing
+            'warehouses',
+            'warehouse_locations',
+            'stock_transfers',
+            'stock_transfer_items',
+
+            // Inventory
             'stock_movements',
             'inventory_adjustments',
+            'inventory_adjustment_items',
+
+            // Sales
+            'customers',
+            'sales_orders',
+            'sales_order_items',
+
+            // Audit
             'audit_logs',
         ];
 
@@ -62,7 +79,24 @@ class PermissionSeeder extends Seeder
             // Goods Receiving
             'receive_goods',
 
-            // Inventory
+            // Inventory Adjustments
+            // Mirrors the purchase order workflow: draft -> submit -> approve/reject.
+            // Without these, 'adjust_inventory' below is left to cover both
+            // "propose an adjustment" and "approve an adjustment" for the same
+            // user, which defeats segregation of duties.
+            'submit_inventory_adjustments',
+            'approve_inventory_adjustments',
+            'reject_inventory_adjustments',
+
+            // Stock Transfers
+            // Same reasoning — StockTransferStatus has Pending/Approved/Rejected
+            // states with nothing in the permission table to gate the transitions.
+            'submit_stock_transfers',
+            'approve_stock_transfers',
+            'reject_stock_transfers',
+
+            // Inventory (execution-level actions, distinct from the
+            // approval permissions above)
             'adjust_inventory',
             'count_inventory',
             'transfer_stock',
